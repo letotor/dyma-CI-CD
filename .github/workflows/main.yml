@@ -9,13 +9,14 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
+env:
+  VAR_1:  value from workflow
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # nom du job/context ici say-hello
   say-hello:
     env: 
-      VAR_2: from job
+      VAR_2: value from job
     runs-on: ubuntu-latest
     steps:
       - name: hello
@@ -23,6 +24,7 @@ jobs:
           VAR_3: from step
         run: |
           echo VAR_1: $VAR_1
+          echo VAR_2: $VAR_2
           echo VAR_1: ${{env.VAR_1}}
           echo github_ref : $GITHUB_REF
           echo secret_1: ${{secrets.SECRET_1}}
